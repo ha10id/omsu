@@ -1,0 +1,20 @@
+.form-group
+	//- p There are {{posts.length}} posts
+	button(ng-if="isAdmin", ng-click="addNews()") Добавить материал
+	.row
+	div(ng-repeat='post in posts', ng-if="!isAdmin")
+		a(href="readPost/{{post.id}}" , style="text-align: center; cursor: pointer;")
+			h3
+				b {{post.title}}
+		div(style="text-align: center;")
+			img.img-thumbnail(src="uploads/{{post.thumbnail}}", style="height: 200px")
+		div
+			p(style="color: black", ng-bind-html='post.body')
+	div(ng-repeat='post in posts', ng-if="isAdmin")
+		a(href="editPost/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
+			h3
+				b {{post.title}}
+		div(style="text-align: center;")
+			img.img-thumbnail(src="uploads/{{post.thumbnail}}", style="height: 200px")
+		div
+			p(style="color: black", ng-bind-html='post.body')

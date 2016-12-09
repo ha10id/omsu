@@ -1,0 +1,10 @@
+.row
+ // панель администратора
+ng-form(method="post")
+    .form-group
+        label(for='title') заголовок:
+        input.form-control(ng-model='title', name='title')
+    .form-group
+        textarea(ui-tinymce="tinymceOptions", ng-model="tinymceModel")
+    .form-group
+        button(ng-click="commit()") Сохранить
