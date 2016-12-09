@@ -1,21 +1,22 @@
 .form-group
-	//- p There are {{posts.length}} posts
 	button(ng-if="isAdmin", ng-click="addNews()") Добавить материал
 	.row
 	div(ng-repeat='post in posts', ng-if="!isAdmin")
 		.jumborton
-			span.label.label-success {{post.publication_date | date}}
-			a(href="readPost/{{post.id}}" , style="text-align: center; cursor: pointer;")
+			span.label.label-success опубликовано {{post.publication_date | date}}
+			a(href="news/{{post.id}}" , style="text-align: center; cursor: pointer;")
 				h3
 					b {{post.title}}
 			div
 				p(style="color: black", ng-bind-html='post.body')
-			hr(align="center" width="300px" color="Red")
+			hr(style="align: center; width=300px; size=4px !important; color=black")
 	.row
 	div(ng-repeat='post in posts', ng-if="isAdmin")
 		.jumborton
-			a(href="editPost/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
+			span.label.label-success опубликовано {{post.publication_date | date}}
+			a(href="newsEdit/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
 				h3
 					b {{post.title}}
 			div
 				p(style="color: black", ng-bind-html='post.body')
+			hr(style="align: center; width=300px; size=4px !important; color=black")

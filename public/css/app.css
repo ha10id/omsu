@@ -12,11 +12,11 @@
   font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 }
 
-
+/*
 .pad-img {
     padding: 2px;
     float: left;
-    height: 50px;
+    height: 50px;*/
     /* vertical-align: top;*/
 }
 /*
@@ -105,7 +105,7 @@ footer {
 .btn-info {
   background-color: #78BEE0;
 }
-img {
+footer img {
   max-width:100%;
   height:auto;
 }

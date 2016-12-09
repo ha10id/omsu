@@ -7,7 +7,7 @@ run(function($rootScope) {
     // if(AuthService.isAuthorized()) {
     //   console.log("authorized");
       $rootScope.isAuthorized = true;
-      $rootScope.isAdmin = false;
+      $rootScope.isAdmin = true;
     // } else {
     //   console.log("unauthorized");
     //   $rootScope.isAuthorized = false;
@@ -49,7 +49,7 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     templateUrl: 'partials/addPost',
     controller: AddPostCtrl
   }).
-  when('/readPost/:id', {
+  when('/news/:id', {
     templateUrl: 'partials/readPost',
     controller: ReadPostCtrl
   }).
@@ -57,7 +57,7 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     templateUrl: 'partials/adminPanel',
     controller: AdminPanelCtrl
   }).
-  when('/editPost/:id', {
+  when('/newsEdit/:id', {
     templateUrl: 'partials/editPost',
     controller: EditPostCtrl
   }).
@@ -65,10 +65,10 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
   //   templateUrl: 'partials/deletePost',
   //   controller: DeletePostCtrl
   // }).
-  // when('/galeries', {
-  //   templateUrl: 'partials/indexGaleries',
-  //   controller: IndexNewsCtrl
-  // }).
+  when('/galeries', {
+    templateUrl: 'partials/indexGaleries',
+    controller: IndexGaleriesCtrl
+  }).
   // when('/news', {
   //   templateUrl: 'partials/indexTips',
   //   controller: IndexNewsCtrl
