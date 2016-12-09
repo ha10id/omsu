@@ -3,6 +3,31 @@
 function IndexNewsCtrl($rootScope, $scope, $http, News, modalService, $log) {
   $scope.posts = News.query();
   $log.info($scope.posts);
+
+  $rootScope.showMenu = function() {
+    $log.info('click!');
+    alert('click!');
+  };
+
+    // показываем меню
+  $rootScope.showDialog = function () {
+    $log.info('show Dialog');
+    var modalDefaults = {
+      backdrop: true,
+      keyboard: true,
+      modalFade: true,
+      templateUrl: 'menu.html',
+      size: 'lg'
+    };
+    var modalOptions = {
+      closeButtonText: 'Отмена',
+      actionButtonText: 'Отправить',
+      headerText: 'Комментарий'
+    };
+    modalService.showModal(modalDefaults, modalOptions).then(function (result) {
+      console.info(result);
+    });
+  };
 }
 
 function ReadPostCtrl($scope, $http, News, $routeParams) {
@@ -64,7 +89,7 @@ function AdminPanelCtrl($scope, $http, News, $log) {
     skin : "o2k7",
                 plugins : "imagemanager,filemanager,safari,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,flash",
                 extended_valid_elements : 'script[type|src],iframe[src|style|width|height|scrolling|marginwidth|marginheight|frameborder],div[*],p[*],object[width|height|classid|codebase|embed|param],param[name|value],embed[param|src|type|width|height|flashvars|wmode]',
-    media_strict: false,
+                media_strict: false,
                 theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,fontselect,fontsizeselect",
                 theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code",
                 theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,iespell,media,advhr,|,print,|,fullscreen",
