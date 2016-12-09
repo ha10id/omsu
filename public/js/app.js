@@ -1,5 +1,18 @@
 // Declare app level module which depends on filters, and services
-angular.module('myApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'myApp.filters', 'myApp.services', 'myApp.directives']).
+angular.module('myApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'ui.tinymce', 'myApp.filters', 'myApp.services', 'myApp.directives']).
+run(function($rootScope) {
+    console.log("app run");
+    // var session = AuthService.getSession();
+    // console.log(session);
+    // if(AuthService.isAuthorized()) {
+    //   console.log("authorized");
+      $rootScope.isAuthorized = true;
+      $rootScope.isAdmin = false;
+    // } else {
+    //   console.log("unauthorized");
+    //   $rootScope.isAuthorized = false;
+    // }
+}).
 config(["$provide", function($provide){
   // Use the `decorator` solution to substitute or attach behaviors to
   // original service instance; @see angular-mocks for more examples....
@@ -26,24 +39,51 @@ config(["$provide", function($provide){
 config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
   $routeProvider.
   when('/', {
-    templateUrl: 'partials/index',
-    controller: IndexCtrl
+    redirectTo: '/news'
   }).
-  // when('/addPost', {
-  //   templateUrl: 'partials/addPost',
-  //   controller: AddPostCtrl
-  // }).
+  when('/news', {
+    templateUrl: 'partials/indexNews',
+    controller: IndexNewsCtrl
+  }).
+  when('/addPost', {
+    templateUrl: 'partials/addPost',
+    controller: AddPostCtrl
+  }).
   when('/readPost/:id', {
     templateUrl: 'partials/readPost',
     controller: ReadPostCtrl
   }).
-  // when('/editPost/:id', {
-  //   templateUrl: 'partials/editPost',
-  //   controller: EditPostCtrl
-  // }).
+  when('/adminPanel', {
+    templateUrl: 'partials/adminPanel',
+    controller: AdminPanelCtrl
+  }).
+  when('/editPost/:id', {
+    templateUrl: 'partials/editPost',
+    controller: EditPostCtrl
+  }).
   // when('/deletePost/:id', {
   //   templateUrl: 'partials/deletePost',
   //   controller: DeletePostCtrl
+  // }).
+  // when('/galeries', {
+  //   templateUrl: 'partials/indexGaleries',
+  //   controller: IndexNewsCtrl
+  // }).
+  // when('/news', {
+  //   templateUrl: 'partials/indexTips',
+  //   controller: IndexNewsCtrl
+  // }).
+  // when('/news', {
+  //   templateUrl: 'partials/indexLegislation',
+  //   controller: IndexNewsCtrl
+  // }).
+  // when('/news', {
+  //   templateUrl: 'partials/indexUseful',
+  //   controller: IndexNewsCtrl
+  // }).
+  // when('/portaldev', {
+  //   templateUrl: 'partials/indexPortalDev',
+  //   controller: IndexNewsCtrl
   // }).
   otherwise({
     redirectTo: '/'

@@ -6,6 +6,9 @@
     "angular-route": "latest",
     "angular-resource": "latest",
     "angular-bootstrap": "^2.2.0",
-    "angular-sanitize": "^1.5.8"
+    "angular-sanitize": "^1.5.8",
+    "angular-ui-tinymce": "^0.0.17",
+    "jquery": "^3.1.1",
+    "tinymce": "^4.5.1"
   }
 }

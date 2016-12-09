@@ -353,7 +353,6 @@ aside {
   text-align: center; }
 
 .aside_title2_span {
-  font-family: 'futurademi',helvetica,arial;
   font-size: 1.3em;
   letter-spacing: 3px;
   display: block;
@@ -363,7 +362,6 @@ aside {
   margin-bottom: 25px; }
 
 .aside_title2_copyright {
-  font-family: 'futurabook', helvetica,arial;
   text-align: center;
   display: block; }
 
@@ -378,9 +376,9 @@ aside {
 
 .aside_menu-list_li, .lblue_btn {
   display: block;
-  
+
   -webkit-border-radius: 15px;
-  
+
   border-radius: 15px;
   margin-bottom: 10px;
   text-align: center; }
@@ -1193,7 +1191,7 @@ header .row {
   margin-top: 30px; }
 
   ul>li>ul{
-    padding-left: 20px; 
+    padding-left: 20px;
   }
 
   ul.index-list>li{
@@ -1296,7 +1294,7 @@ header .row {
     margin-left: 0;
     margin-top: 10px;
   }
-  
+
   .town{
     margin-bottom: 0 !important;
   }
@@ -1345,7 +1343,7 @@ textarea.vinput_input{
 }
 
 .fieldWrapper{
-  display: block !important;  
+  display: block !important;
   width: 100% !important;
   margin-bottom: 20px !important;
 }
@@ -1876,10 +1874,10 @@ textarea.vinput_input{
 }
 .xdsoft_datetimepicker .xdsoft_save_selected {
     display: block;
-    border: 1px solid #dddddd !important; 
+    border: 1px solid #dddddd !important;
     margin-top: 5px;
     width: 100%;
-    color: #454551; 
+    color: #454551;
     font-size: 13px;
 }
 .xdsoft_datetimepicker .blue-gradient-button {

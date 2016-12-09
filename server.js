@@ -10,7 +10,7 @@
   var errorHandler    = require('errorhandler');
 
   var routes = require('./routes');
-  var api    = require('./routes/api');
+  var news    = require('./routes/api.news');
 
   var http   = require('http');
   var path   = require('path');
@@ -21,7 +21,7 @@
   mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
 
 // all environments
-  app.set('port', process.env.PORT || 3000);
+  app.set('port', process.env.PORT || 3020);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(favicon(__dirname + '/public/img/26.ico'));
@@ -50,14 +50,15 @@
   app.get('/partials/:name', routes.partials);
 
 // JSON API
-  app.get('/api/posts', api.posts);
-  app.get('/api/post/:id', api.post);
-  app.post('/api/menu', api.addMenu);
-  app.put('/api/menuchildren/:id', api.addMenuChildren);
-  app.get('/api/menu', api.listMenu);
-  // app.put('/api/post/:id', api.editPost);
+  app.get('/api/posts', news.list);
+  app.get('/api/posts/:id', news.get);
+  app.post('/upload', news.upload);  // app.put('/api/posts/:id', api.postUpdate);
+  // app.post('/api/menu', api.addMenu);
+  // app.put('/api/menuchildren/:id', api.addMenuChildren);
+  // app.get('/api/menu', api.listMenu);
+  app.put('/api/posts/:id', news.edit);
   // app.delete('/api/post/:id', api.deletePost);
-  // app.get('*', routes.index);
+  app.get('*', routes.index);
 
 // Start Server =============================================
 

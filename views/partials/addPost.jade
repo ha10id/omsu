@@ -1,7 +1,13 @@
-h2 Write a new post
-label(for='title') Title:
-input(ng-model='form.title', name='title')
-p Body:
-textarea(ng-model='form.text', cols='50', rows='15')
-p
-  button(ng-click='submitPost()') Submit Post
+.row
+ // добавление новости
+ng-form(method="post")
+    .form-group
+        label(for='title') заголовок:
+        input.form-control(ng-model='title', name='title')
+    .form-group
+        textarea(ui-tinymce="tinymceOptions", ng-model="tinymceModel")
+    .form-group
+        .btn-group
+            button.btn.btn-success(ng-if="isAdmin", ng-click='commitDocument()') Опубликовать
+            button.btn.btn-info(ng-if="isAdmin", ng-click='closeDocument()') Сохранить в черновики
+            button.btn.btn-danger(ng-if="isAdmin", ng-click='uncloseDocument()') Удалить

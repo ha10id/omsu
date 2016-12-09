@@ -8,6 +8,8 @@
     "error-handler": "latest",
     "errorhandler": "latest",
     "express": "latest",
+    "fs": "0.0.1-security",
+    "gm": "^1.23.0",
     "jade": "latest",
     "method-override": "latest",
     "morgan": "latest",
