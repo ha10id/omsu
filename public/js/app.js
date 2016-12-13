@@ -1,18 +1,53 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp', ['ngRoute', 'ngSanitize', 'ui.bootstrap', 'ui.tinymce', 'myApp.filters', 'myApp.services', 'myApp.directives']).
-run(function($rootScope) {
+run(function($rootScope, modalService) {
     console.log("app run");
-    // var session = AuthService.getSession();
+    // показываем меню
+    $rootScope.showMenu = function () {
+      // $log.info('show Dialog');
+      var modalDefaults = {
+        backdrop: true,
+        keyboard: true,
+        modalFade: true,
+        templateUrl: 'menu.html',
+        size: 'lg'
+      };
+      var modalOptions = {
+        closeButtonText: 'Отмена',
+        actionButtonText: 'Отправить',
+        headerText: 'Комментарий'
+      };
+      modalService.showModal(modalDefaults, modalOptions).then(function (result) {
+        console.info(result);
+      });
+
+    };
+  $rootScope.isAuthorized = true;
+  $rootScope.isAdmin = true;
+
+  // var session = AuthService.getSession();
     // console.log(session);
     // if(AuthService.isAuthorized()) {
     //   console.log("authorized");
-      $rootScope.isAuthorized = true;
-      $rootScope.isAdmin = true;
+    //   $rootScope.isAuthorized = true;
     // } else {
     //   console.log("unauthorized");
     //   $rootScope.isAuthorized = false;
     // }
 }).
+// run(function($rootScope) {
+//     console.log("app run");
+//     // var session = AuthService.getSession();
+//     // console.log(session);
+//     // if(AuthService.isAuthorized()) {
+//     //   console.log("authorized");
+//       $rootScope.isAuthorized = true;
+//       $rootScope.isAdmin = true;
+//     // } else {
+//     //   console.log("unauthorized");
+//     //   $rootScope.isAuthorized = false;
+//     // }
+// }).
 config(["$provide", function($provide){
   // Use the `decorator` solution to substitute or attach behaviors to
   // original service instance; @see angular-mocks for more examples....
@@ -45,9 +80,9 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     templateUrl: 'partials/indexNews',
     controller: IndexNewsCtrl
   }).
-  when('/addPost', {
+  when('/addNews', {
     templateUrl: 'partials/addPost',
-    controller: AddPostCtrl
+    controller: AddNewsCtrl
   }).
   when('/news/:id', {
     templateUrl: 'partials/readPost',
@@ -61,13 +96,17 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     templateUrl: 'partials/editPost',
     controller: EditPostCtrl
   }).
-  // when('/deletePost/:id', {
+  // when('/deleteNews/:id', {
   //   templateUrl: 'partials/deletePost',
   //   controller: DeletePostCtrl
   // }).
   when('/galeries', {
     templateUrl: 'partials/indexGaleries',
     controller: IndexGaleriesCtrl
+  }).
+  when('/addGaleries', {
+    templateUrl: 'partials/addGaleries',
+    controller: AddGaleriesCtrl
   }).
   // when('/news', {
   //   templateUrl: 'partials/indexTips',

@@ -9,8 +9,9 @@
   var multipart       = require('connect-multiparty');
   var errorHandler    = require('errorhandler');
 
-  var routes = require('./routes');
-  var news    = require('./routes/api.news');
+  var routes    = require('./routes');
+  var news      = require('./routes/api.news');
+  var galeries  = require('./routes/api.galeries');
 
   var http   = require('http');
   var path   = require('path');
@@ -50,14 +51,23 @@
   app.get('/partials/:name', routes.partials);
 
 // JSON API
-  app.get('/api/posts', news.list);
-  app.get('/api/posts/:id', news.get);
-  app.post('/upload', news.upload);  // app.put('/api/posts/:id', api.postUpdate);
+
+  app.post('/upload', news.upload);
+  // app.put('/api/posts/:id', api.postUpdate);
   // app.post('/api/menu', api.addMenu);
   // app.put('/api/menuchildren/:id', api.addMenuChildren);
   // app.get('/api/menu', api.listMenu);
+  app.get('/api/posts', news.list);
+  app.get('/api/posts/:id', news.get);
+  app.post('/api/posts', news.add);
   app.put('/api/posts/:id', news.edit);
-  // app.delete('/api/post/:id', api.deletePost);
+  app.delete('/api/posts/:id', news.delete);
+
+  app.get('/api/galeries', galeries.list);
+  app.get('/api/galeries/:id', galeries.get);
+  app.post('/api/galeries', galeries.add);
+  app.put('/api/galeries/:id', galeries.edit);
+  app.delete('/api/galeries/:id', galeries.delete);
   app.get('*', routes.index);
 
 // Start Server =============================================

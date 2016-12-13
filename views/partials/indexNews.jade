@@ -1,22 +1,24 @@
 .form-group
-	button(ng-if="isAdmin", ng-click="addNews()") Добавить материал
-	.row
-	div(ng-repeat='post in posts', ng-if="!isAdmin")
-		.jumborton
-			span.label.label-success опубликовано {{post.publication_date | date}}
-			a(href="news/{{post.id}}" , style="text-align: center; cursor: pointer;")
-				h3
-					b {{post.title}}
-			div
-				p(style="color: black", ng-bind-html='post.body')
-			hr(style="align: center; width=300px; size=4px !important; color=black")
-	.row
-	div(ng-repeat='post in posts', ng-if="isAdmin")
-		.jumborton
-			span.label.label-success опубликовано {{post.publication_date | date}}
-			a(href="newsEdit/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
-				h3
-					b {{post.title}}
-			div
-				p(style="color: black", ng-bind-html='post.body')
-			hr(style="align: center; width=300px; size=4px !important; color=black")
+    .row
+    div(style="text-align: center; margin-top: 6px;")
+        button(ng-if="isAdmin", ng-click="addNews()") Добавить материал
+    .row
+    div(ng-repeat='post in posts', ng-if="!isAdmin")
+        .jumborton
+            span.label.label-success опубликовано {{post.publication_date | date}}
+            a(href="news/{{post.id}}" , style="text-align: center; cursor: pointer;")
+                h3
+                    b {{post.title}}
+            div
+                p(style="color: black", ng-bind-html='post.body')
+            hr(style="align: center; width=300px; size=4px !important; color=black")
+    .row
+    div(ng-repeat='post in posts', ng-if="isAdmin")
+        .jumborton
+            span.label.label-success опубликовано {{post.publication_date | date}}
+            a(href="newsEdit/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
+                h3
+                    b {{post.title}}
+            div
+                p(style="color: black", ng-bind-html='post.body')
+            hr(style="align: center; width=300px; size=4px !important; color=black")

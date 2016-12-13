@@ -15,4 +15,4 @@ ng-form(method="post")
         .btn-group
             button.btn.btn-success(ng-if="isAdmin", ng-click='commitDocument()') Опубликовать
             button.btn.btn-info(ng-if="isAdmin", ng-click='closeDocument()') Сохранить в черновики
-            button.btn.btn-danger(ng-if="isAdmin", ng-click='uncloseDocument()') Удалить
+            button.btn.btn-danger(ng-if="isAdmin", ng-click='removeDocument()') Удалить

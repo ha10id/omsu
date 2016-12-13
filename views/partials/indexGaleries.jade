@@ -1,18 +1,24 @@
 .form-group
-	p Galereya
-	button(ng-if="isAdmin", ng-click="addNews()") Добавить материал
-	.row
-	div(ng-repeat='post in posts', ng-if="!isAdmin")
-		a(href="readPost/{{post.id}}" , style="text-align: center; cursor: pointer;")
-			h3
-				b {{post.title}}
-		div
-			p(style="color: black", ng-bind-html='post.body')
-	div(ng-repeat='post in posts', ng-if="isAdmin")
-		a(href="editPost/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
-			h3
-				b {{post.title}}
-		div(style="text-align: center;")
-			img.img-thumbnail(src="uploads/{{post.thumbnail}}", style="height: 200px")
-		div
-			p(style="color: black", ng-bind-html='post.body')
+    .row
+    div(style="text-align: center; margin-top: 6px;")
+        button(ng-if="isAdmin", ng-click="addGaleries()") Добавить материал
+    .row
+    div(ng-repeat='post in posts', ng-if="!isAdmin")
+        .jumborton
+            span.label.label-success опубликовано {{post.publication_date | date}}
+            a(href="galeries/{{post.id}}" , style="text-align: center; cursor: pointer;")
+                h3
+                    b {{post.title}}
+            div
+                p(style="color: black", ng-bind-html='post.body')
+            hr(style="align: center; width=300px; size=4px !important; color=black")
+    .row
+    div(ng-repeat='post in posts', ng-if="isAdmin")
+        .jumborton
+            span.label.label-success опубликовано {{post.publication_date | date}}
+            a(href="galeriesEdit/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
+                h3
+                    b {{post.title}}
+            div
+                p(style="color: black", ng-bind-html='post.body')
+            hr(style="align: center; width=300px; size=4px !important; color=black")

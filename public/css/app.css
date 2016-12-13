@@ -11,7 +11,6 @@
 .class {
   font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 }
-
 /*
 .pad-img {
     padding: 2px;
@@ -352,6 +351,7 @@ h1 {
     display: none !important;
   }
 }
+
 /*
 @media only screen and (max-width: 767px) {
     img.hd {

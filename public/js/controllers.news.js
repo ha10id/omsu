@@ -1,39 +1,80 @@
 // Контроллеры
 // главная страница
-function IndexNewsCtrl($rootScope, $scope, $http, News, modalService, $log) {
+function IndexNewsCtrl($rootScope, $scope, $http, News, $location, $log) {
   $scope.posts = News.query();
   $log.info($scope.posts);
 
-  $rootScope.showMenu = function() {
-    $log.info('click!');
-    alert('click!');
-  };
+  // $rootScope.showMenu = function() {
+  //   $log.info('click!');
+  //   alert('click!');
+  // };
 
-    // показываем меню
-  $rootScope.showDialog = function () {
-    $log.info('show Dialog');
-    var modalDefaults = {
-      backdrop: true,
-      keyboard: true,
-      modalFade: true,
-      templateUrl: 'menu.html',
-      size: 'lg'
-    };
-    var modalOptions = {
-      closeButtonText: 'Отмена',
-      actionButtonText: 'Отправить',
-      headerText: 'Комментарий'
-    };
-    modalService.showModal(modalDefaults, modalOptions).then(function (result) {
-      console.info(result);
-    });
+  $scope.addNews = function(){
+    $location.url('/addNews');
   };
-}
+};
 
 function ReadPostCtrl($scope, $http, News, $routeParams) {
   News.get({id: $routeParams.id}, function(data){
     $scope.post = data;
   });
+}
+// добавление новости
+function AddNewsCtrl($scope, $location, $routeParams, News, $timeout, $log) {
+  'use strict';
+  $scope.tinymceOptions = {
+  // General options
+  selector:'textarea',
+  mode : "exact",
+  elements : "wysiwygEditor",
+  themes : "modern",
+  language: 'ru',
+  height: 400,
+  plugins : "image,pagebreak,layer,table,save,advlist,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,fullscreen,noneditable,visualchars,nonbreaking,template",
+  extended_valid_elements : 'script[type|src],iframe[src|style|width|height|scrolling|marginwidth|marginheight|frameborder],div[*],p[*],object[width|height|classid|codebase|embed|param],param[name|value],embed[param|src|type|width|height|flashvars|wmode]',
+    // media_strict: false,
+    theme_advanced_toolbar_location : "top",
+    theme_advanced_toolbar_align : "left",
+    theme_advanced_statusbar_location : "bottom",
+    theme_advanced_resizing : true,
+    relative_urls : true,
+    // convert_urls : false,
+    file_browser_callback: function(field_name, url, type, win) {
+      if(type=='image') $('#my_form input').click();
+    }
+  };
+  // чистим поля формы
+  $scope.form = {};
+  // функция сохранения обращения
+  $scope.commitDocument = function () {
+    $log.info('новость: ', $scope.tinymceModel);
+    $scope.form.creation_date = new Date();
+    $scope.form.publication_date = new Date();
+    $scope.form.created_by = "currentUser";
+    $scope.form.body = $scope.tinymceModel;
+    var newNews = new News($scope.form);
+    console.log(newNews)
+    newNews.$save().then(
+      function (data) {
+        $log.info("новость сохранена");
+        // $log.debug(data);
+        $location.url('/');
+      },
+      function (err) {
+        // сообщаем об ошибке.
+        $log.warn("++++++++++++++++++++++++++++");
+        switch(err.status) {
+          case 401:
+          $log.info(err);
+          alert('Вы не авторизованы! Зарегистрируйтесь на портале (меню "ВХОД").');
+          break;
+          default:
+          alert(err.statusText);
+        };
+        $location.url('/');
+      }
+      );
+  };
 }
 
 // страница администрирования
@@ -69,39 +110,6 @@ function AdminPanelCtrl($scope, $http, News, $log) {
       }
       );
   };
-  // настройки TinyMCE
-  // $scope.tinymceOptions = {
-  //   plugins: 'link image code print preview',
-  //   language: 'ru',
-  //   height: 400,
-  //   themes: "modern",
-  //   relative_urls : false,
-  //   convert_urls : false,
-  //   remove_script_host : false,
-  //   imageupload_url: 'uploads/',
-  //   toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
-  // };
-  $scope.tinymceOptions = {
-  // General options
-    mode : "exact",
-    elements : "wysiwygEditor",
-    theme : "advanced",
-    skin : "o2k7",
-                plugins : "imagemanager,filemanager,safari,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,flash",
-                extended_valid_elements : 'script[type|src],iframe[src|style|width|height|scrolling|marginwidth|marginheight|frameborder],div[*],p[*],object[width|height|classid|codebase|embed|param],param[name|value],embed[param|src|type|width|height|flashvars|wmode]',
-                media_strict: false,
-                theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,formatselect,fontselect,fontsizeselect",
-                theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code",
-                theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,iespell,media,advhr,|,print,|,fullscreen",
-                theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,pagebreak,|,insertdate,inserttime,preview,|,forecolor,backcolor",
-                theme_advanced_toolbar_location : "top",
-                theme_advanced_toolbar_align : "left",
-                theme_advanced_statusbar_location : "bottom",
-                theme_advanced_resizing : true,
-    relative_urls : "false",
-    remove_script_host : false,
-    convert_urls : false
-  };
 };
 
 function AddPostCtrl($scope, $http, $location) {
@@ -114,7 +122,7 @@ function AddPostCtrl($scope, $http, $location) {
   };
 }
 
-function EditPostCtrl($scope, $http, $location, News, $routeParams, $log) {
+function EditPostCtrl($scope, $location, News, $routeParams, $log) {
   $scope.form = {};
   'use strict';
   var news = News.get({id: $routeParams.id}, function(data){
@@ -146,68 +154,87 @@ function EditPostCtrl($scope, $http, $location, News, $routeParams, $log) {
           default:
           alert(err.statusText);
         };
-      }
-      );
+      });
   };
+
+  $scope.removeDocument = function () {
+    $log.info('новость: ', news);
+    let result = News.remove({id: $routeParams.id});
+    console.log(result)
+    $location.url('/news');
+    // $scope.form.body = $scope.tinymceModel;
+    // var newNews = new News($scope.form);
+    // console.log(newNews)
+    // newNews.$save().then(
+    //   function (data) {
+    //     $log.info("новость сохранена");
+    //     $log.debug(data);
+    //     $location.url('/');
+    //   },
+    //   function (err) {
+    //     // сообщаем об ошибке.
+    //     $log.warn("++++++++++++++++++++++++++++");
+    //     switch(err.status) {
+    //       case 401:
+    //         $log.info(err);
+    //         alert('Вы не авторизованы! Зарегистрируйтесь на портале (меню "ВХОД").');
+    //         break;
+    //       default:
+    //         alert(err.statusText);
+    //     };
+    //     $location.url('/');
+    //   }
+    // );
+  };
+
 
   $scope.tinymceOptions = {
   // General options
-    selector:'textarea',
-    mode : "exact",
-    elements : "wysiwygEditor",
-    themes : "modern",
-    language: 'ru',
-    height: 200,
-    plugins : "imagetools,image,pagebreak,layer,table,save,advlist,emotions,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,template",
-    extended_valid_elements : 'script[type|src],iframe[src|style|width|height|scrolling|marginwidth|marginheight|frameborder],div[*],p[*],object[width|height|classid|codebase|embed|param],param[name|value],embed[param|src|type|width|height|flashvars|wmode]',
-    media_strict: false,
+  selector:'textarea',
+  mode : "exact",
+  elements : "wysiwygEditor",
+  themes : "modern",
+  language: 'ru',
+  height: 400,
+  plugins : "image,pagebreak,layer,table,save,advlist,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,template",
+  extended_valid_elements : 'script[type|src],iframe[src|style|width|height|scrolling|marginwidth|marginheight|frameborder],div[*],p[*],object[width|height|classid|codebase|embed|param],param[name|value],embed[param|src|type|width|height|flashvars|wmode]',
+    // media_strict: false,
     theme_advanced_toolbar_location : "top",
     theme_advanced_toolbar_align : "left",
     theme_advanced_statusbar_location : "bottom",
     theme_advanced_resizing : true,
-    relative_urls : false,
-    convert_urls : false,
+    relative_urls : true,
+    // convert_urls : false,
     file_browser_callback: function(field_name, url, type, win) {
       if(type=='image') $('#my_form input').click();
     }
   };
-  // настройки TinyMCE
-  // $scope.tinymceOptions = {
-  //   selector:'textarea',
-
-  //   // plugins: 'link image code print preview safari, pagebreak, style, layer, table, save, advhr, advimage, advlink, emotions, iespell, inlinepopups, insertdatetime, preview, media, searchreplace, print, contextmenu, paste, directionality, fullscreen, noneditable, visualchars, nonbreaking, xhtmlxtras, template',
-  //   plugins: 'link image code print preview',
-  //   editor_selector : "tiny",
-  //   toolbar: 'fontsizeselect',
-  //   fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
-  //   language: 'ru',
-  //   height: 200,
-  //   themes: "modern",
-  //   imageupload_url: 'uploads/',
-  //   toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code | insertfile link image',
-  //   file_browser_callback: function(field_name, url, type, win) {
-  //     if(type=='image') $('#my_form input').click();
-  //   }
-  // };
 };
 
 
-function DeletePostCtrl($scope, $http, $location, $routeParams) {
-  $http.get('/api/post/' + $routeParams.id).
-  success(function(data) {
-    $scope.post = data.post;
-  });
-  $scope.deletePost = function () {
-    $http.delete('/api/post/' + $routeParams.id).
-    success(function(data) {
-      $location.url('/');
-    });
-  };
-  $scope.home = function () {
-    $location.url('/');
-  };
-}
+// function DeletePostCtrl($scope, $http, $location, News, $routeParams) {
+//   var doNews = News.get({id: $routeParams.id});
+//   // doNews.$delete;
+//     // $scope.post = data;
+//   };
 
+  // $http.get('/api/post/' + $routeParams.id).
+  // success(function(data) {
+  //   $scope.post = data.post;
+  // });
+  // $scope.deletePost = function () {
+  //   $http.delete('/api/post/' + $routeParams.id).
+  //   success(function(data) {
+  //     $location.url('/');
+  //   });
+  // };
+  // $scope.home = function () {
+  //   $location.url('/');
+  // };
+// }
+//   News.get({id: $routeParams.id}, function(data){
+//     $scope.post = data;
+//   });
   // Documents.get({id: $routeParams.id}, function(data){
   //   $scope.form = data;
 

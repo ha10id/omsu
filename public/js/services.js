@@ -7,6 +7,11 @@ angular.module('myApp.services', ['ngResource'])
 		'update': { method:'PUT'}
 	});
 })
+.factory('Galeries', function($resource){
+	return $resource('api/galeries/:id', null, {
+		'update': { method:'PUT'}
+	});
+})
 // Фабрика объекта "Категории"
 // .factory('Categories', function($resource){
 // 	return $resource('api/categories/:id', null, {

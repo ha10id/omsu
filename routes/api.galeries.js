@@ -1,7 +1,7 @@
 var gm              = require('gm');
 var fs              = require('fs');
 //========================================================
-var News = require('./models/News.js');
+var Galeries = require('./models/Galeries.js');
 // генерация уникального ID
 var ID = function () {
   'use strict';
@@ -18,20 +18,20 @@ var ID = function () {
 // список документов +
 exports.list = function (req, res) {
   'use strict';
-  News.find(function(err, news) {
+  Galeries.find(function(err, response) {
     if (err) {
       res.send(err);
     }
-    news = news.map(function(data) {
+    response = response.map(function(data) {
       return {
         id: data.id,
         title: data.title,
-        thumbnail: data.thumbnail,
         publication_date: data.publication_date,
+        creation_date: data.creation_date,
         body: data.body
       };
     });
-      res.json(news); // return all documents in JSON format
+      res.json(response); // return all documents in JSON format
     }).sort({publication_date: -1});
 };
 
@@ -46,13 +46,13 @@ exports.edit = function (req, res) {
     // console.log('session.isadmin: ', req.session.isadmin);
     // console.dir('request.body: ', req.body);
 
-    News.findOne({ _id : id }, function(err, news) {
+    Galeries.findOne({ _id : id }, function(err, response) {
       if (err) {
         res.send(false);
       }
       // изменяем поля
-      news.title = req.body.title;
-      news.body = req.body.body;
+      response.title = req.body.title;
+      response.body = req.body.body;
       // news.category = req.body.category;
       // news.longitude = req.body.longitude;
       // news.latitude = req.body.latitude;
@@ -67,7 +67,7 @@ exports.edit = function (req, res) {
       // if ((document._creator == req.session.currentUser._id) || (req.session.isadmin == true) || (req.session.ismoderator == true)) {
         // сохраняем отредактированный документ
         console.log(news);
-        news.save(function(err) {
+        response.save(function(err) {
           if (err) {
             res.send(false);
           }
@@ -87,12 +87,12 @@ exports.get = function (req, res) {
   var id = req.params.id;
   console.log("-----------------------------------------");
   console.log('api get news :', id);
-  News.findOne({ _id : id }, function(err, news) {
+  Galeries.findOne({ _id : id }, function(err, response) {
     if (err) {
       res.send(err);
     }
     // console.log(news);
-    res.json(news);
+    res.json(response);
   });
 };
 // POST
@@ -112,11 +112,11 @@ exports.add = function (req, res) {
     // };
     // req.body.datestamp = new Date();
     // новый объект
-    var newNews = new News(req.body);
+    var newGaleries = new Galeries(req.body);
     // пробуем записать
-    newNews.save(function(err) {
+    newGaleries.save(function(err) {
       // console.log(newNews);
-      var data = newNews.toObject();
+      var data = newGaleries.toObject();
       data.id = data._id;
       if (err) {
         res.send(err);

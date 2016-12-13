@@ -131,7 +131,7 @@ block body
                 img(src="img/gerb.png", alt="герб Ставрополя")
           row
             .col-sm-12
-              div.aside_menu-btn.ib(ng-click="showDialog()")
+              div.aside_menu-btn.ib(ng-click="showMenu()")
                 img(src="img/menu-icon.png", alt="")
                 span.aside_menu-btn_title Меню
           row
@@ -223,13 +223,3 @@ block body
   script(src='js/directives.js')
   //- script(src='js/components.js')
   script(src="libs/angular-ui-tinymce/src/tinymce.js")
-  //- script(src="libs/tinymce/tinymce.js")
-  //- script(src='http://cdn.tinymce.com/4/tinymce.min.js')
-  //- script.
-  //-     tinymce.init({
-  //-     selector: '#my_editor',
-  //-     plugins: ["image"],
-  //-     file_browser_callback: function(field_name, url, type, win) {
-  //-     if(type=='image') $('#my_form input').click();
-  //-     }
-  //-     });
