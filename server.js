@@ -11,8 +11,8 @@
 
   var routes    = require('./routes');
   var news      = require('./routes/api.news');
-  var galeries  = require('./routes/api.galeries');
-
+  var galleries = require('./routes/api.galleries');
+  var usefuls   = require('./routes/api.usefuls');
   var http   = require('http');
   var path   = require('path');
 
@@ -53,21 +53,22 @@
 // JSON API
 
   app.post('/upload', news.upload);
-  // app.put('/api/posts/:id', api.postUpdate);
   // app.post('/api/menu', api.addMenu);
   // app.put('/api/menuchildren/:id', api.addMenuChildren);
   // app.get('/api/menu', api.listMenu);
+  // НОВОСТИ
   app.get('/api/posts', news.list);
   app.get('/api/posts/:id', news.get);
   app.post('/api/posts', news.add);
   app.put('/api/posts/:id', news.edit);
   app.delete('/api/posts/:id', news.delete);
-
-  app.get('/api/galeries', galeries.list);
-  app.get('/api/galeries/:id', galeries.get);
-  app.post('/api/galeries', galeries.add);
-  app.put('/api/galeries/:id', galeries.edit);
-  app.delete('/api/galeries/:id', galeries.delete);
+  // ГАЛЕРЕЯ
+  app.get('/api/galleries', galleries.list);
+  app.get('/api/galleries/:id', galleries.get);
+  app.post('/api/galleries', galleries.add);
+  app.put('/api/galleries/:id', galleries.edit);
+  app.delete('/api/galleries/:id', galleries.delete);
+  // ЛЮБОЙ, НЕ СУЩЕСТВУЮЩИЙ
   app.get('*', routes.index);
 
 // Start Server =============================================

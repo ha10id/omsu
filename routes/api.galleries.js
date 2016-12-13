@@ -1,7 +1,7 @@
 var gm              = require('gm');
 var fs              = require('fs');
 //========================================================
-var Galeries = require('./models/Galeries.js');
+var Galleries = require('./models/Galleries.js');
 // генерация уникального ID
 var ID = function () {
   'use strict';
@@ -18,7 +18,7 @@ var ID = function () {
 // список документов +
 exports.list = function (req, res) {
   'use strict';
-  Galeries.find(function(err, response) {
+  Galleries.find(function(err, response) {
     if (err) {
       res.send(err);
     }
@@ -46,7 +46,7 @@ exports.edit = function (req, res) {
     // console.log('session.isadmin: ', req.session.isadmin);
     // console.dir('request.body: ', req.body);
 
-    Galeries.findOne({ _id : id }, function(err, response) {
+    Galleries.findOne({ _id : id }, function(err, response) {
       if (err) {
         res.send(false);
       }
@@ -66,7 +66,7 @@ exports.edit = function (req, res) {
       // document.name = req.session.user;
       // if ((document._creator == req.session.currentUser._id) || (req.session.isadmin == true) || (req.session.ismoderator == true)) {
         // сохраняем отредактированный документ
-        console.log(news);
+        // console.log(news);
         response.save(function(err) {
           if (err) {
             res.send(false);
@@ -87,7 +87,7 @@ exports.get = function (req, res) {
   var id = req.params.id;
   console.log("-----------------------------------------");
   console.log('api get news :', id);
-  Galeries.findOne({ _id : id }, function(err, response) {
+  Galleries.findOne({ _id : id }, function(err, response) {
     if (err) {
       res.send(err);
     }
@@ -112,11 +112,11 @@ exports.add = function (req, res) {
     // };
     // req.body.datestamp = new Date();
     // новый объект
-    var newGaleries = new Galeries(req.body);
+    var newItem = new Galleries(req.body);
     // пробуем записать
-    newGaleries.save(function(err) {
+    newItem.save(function(err) {
       // console.log(newNews);
-      var data = newGaleries.toObject();
+      var data = newItem.toObject();
       data.id = data._id;
       if (err) {
         res.send(err);
@@ -130,7 +130,7 @@ exports.add = function (req, res) {
 // // DELETE
 exports.delete = function (req, res) {
   var id = req.params.id;
-  News.remove({_id: id}, function(err, data){
+  Galleries.remove({_id: id}, function(err, data){
     if (err) {
       res.json(false);
     }
@@ -139,30 +139,6 @@ exports.delete = function (req, res) {
   }).exec();
 };
 
-
-// // PUT
-// exports.editPost = function (req, res) {
-//   var id = req.params.id;
-
-//   if (id >= 0 && id < data.posts.length) {
-//     data.posts[id] = req.body;
-//     res.json(true);
-//   } else {
-//     res.json(false);
-//   }
-// };
-
-// // DELETE
-// exports.deletePost = function (req, res) {
-//   var id = req.params.id;
-
-//   if (id >= 0 && id < data.posts.length) {
-//     data.posts.splice(id, 1);
-//     res.json(true);
-//   } else {
-//     res.json(false);
-//   }
-// };
 // загрузка картинок в массив и на сервер
 exports.upload = function (req, res, next) {
   'use strict';

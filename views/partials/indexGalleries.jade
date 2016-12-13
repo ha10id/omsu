@@ -1,12 +1,12 @@
 .form-group
     .row
     div(style="text-align: center; margin-top: 6px;")
-        button(ng-if="isAdmin", ng-click="addGaleries()") Добавить материал
+        button(ng-if="isAdmin", ng-click="addGalleries()") Добавить материал
     .row
     div(ng-repeat='post in posts', ng-if="!isAdmin")
         .jumborton
             span.label.label-success опубликовано {{post.publication_date | date}}
-            a(href="galeries/{{post.id}}" , style="text-align: center; cursor: pointer;")
+            a(href="galleries/{{post.id}}" , style="text-align: center; cursor: pointer;")
                 h3
                     b {{post.title}}
             div
@@ -16,7 +16,7 @@
     div(ng-repeat='post in posts', ng-if="isAdmin")
         .jumborton
             span.label.label-success опубликовано {{post.publication_date | date}}
-            a(href="galeriesEdit/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
+            a(href="editGalleries/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
                 h3
                     b {{post.title}}
             div

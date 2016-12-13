@@ -22,6 +22,27 @@ run(function($rootScope, modalService) {
       });
 
     };
+    $rootScope.tinymceOptions = {
+      // General options
+      selector:'textarea',
+      mode : "exact",
+      elements : "wysiwygEditor",
+      themes : "modern",
+      language: 'ru',
+      height: 400,
+      plugins : "image,pagebreak,layer,table,save,advlist,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,fullscreen,noneditable,visualchars,nonbreaking,template",
+      extended_valid_elements : 'script[type|src],iframe[src|style|width|height|scrolling|marginwidth|marginheight|frameborder],div[*],p[*],object[width|height|classid|codebase|embed|param],param[name|value],embed[param|src|type|width|height|flashvars|wmode]',
+      // media_strict: false,
+      theme_advanced_toolbar_location : "top",
+      theme_advanced_toolbar_align : "left",
+      theme_advanced_statusbar_location : "bottom",
+      theme_advanced_resizing : true,
+      relative_urls : true,
+      // convert_urls : false,
+      file_browser_callback: function(field_name, url, type, win) {
+          if(type=='image') $('#my_form input').click();
+      }
+  };
   $rootScope.isAuthorized = true;
   $rootScope.isAdmin = true;
 
@@ -88,10 +109,10 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     templateUrl: 'partials/readPost',
     controller: ReadPostCtrl
   }).
-  when('/adminPanel', {
-    templateUrl: 'partials/adminPanel',
-    controller: AdminPanelCtrl
-  }).
+  // when('/adminPanel', {
+  //   templateUrl: 'partials/adminPanel',
+  //   controller: AdminPanelCtrl
+  // }).
   when('/newsEdit/:id', {
     templateUrl: 'partials/editPost',
     controller: EditPostCtrl
@@ -100,22 +121,26 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
   //   templateUrl: 'partials/deletePost',
   //   controller: DeletePostCtrl
   // }).
-  when('/galeries', {
-    templateUrl: 'partials/indexGaleries',
-    controller: IndexGaleriesCtrl
+  when('/galleries', {
+    templateUrl: 'partials/indexGalleries',
+    controller: IndexGalleriesCtrl
   }).
-  when('/addGaleries', {
-    templateUrl: 'partials/addGaleries',
-    controller: AddGaleriesCtrl
+  when('/galleries/:id', {
+    templateUrl: 'partials/readGalleries',
+    controller: ReadGalleriesCtrl
   }).
-  // when('/news', {
-  //   templateUrl: 'partials/indexTips',
-  //   controller: IndexNewsCtrl
-  // }).
-  // when('/news', {
-  //   templateUrl: 'partials/indexLegislation',
-  //   controller: IndexNewsCtrl
-  // }).
+  when('/addGalleries', {
+    templateUrl: 'partials/addGalleries',
+    controller: AddGalleriesCtrl
+  }).
+  when('/editGalleries/:id', {
+    templateUrl: 'partials/editGalleries',
+    controller: EditGalleriesCtrl
+  }).
+  when('/usefuls', {
+    templateUrl: 'partials/indexUsefuls',
+    controller: IndexUsefulsCtrl
+  }).
   // when('/news', {
   //   templateUrl: 'partials/indexUseful',
   //   controller: IndexNewsCtrl

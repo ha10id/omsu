@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-var Galeries = new Schema({
+var Galleries = new Schema({
     'title': String,
     'url': String,
     'creation_date': Date,
@@ -11,16 +11,15 @@ var Galeries = new Schema({
     'body': String
 });
 
-Galeries.virtual('id')
+Galleries.virtual('id')
 .get(function() {
     return this._id.toHexString();
 });
 
-Galeries.pre('save', function(next) {
+Galleries.pre('save', function(next) {
     // this.keywords = extractKeywords(this.data);
     console.log('presave', this);
     next();
 });
 
-
-module.exports = mongoose.model('Galeries', Galeries);
+module.exports = mongoose.model('Galleries', Galleries);

@@ -7,8 +7,8 @@ angular.module('myApp.services', ['ngResource'])
 		'update': { method:'PUT'}
 	});
 })
-.factory('Galeries', function($resource){
-	return $resource('api/galeries/:id', null, {
+.factory('Galleries', function($resource){
+	return $resource('api/galleries/:id', null, {
 		'update': { method:'PUT'}
 	});
 })
