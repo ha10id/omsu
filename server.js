@@ -9,10 +9,11 @@
   var multipart       = require('connect-multiparty');
   var errorHandler    = require('errorhandler');
 
-  var routes    = require('./routes');
-  var news      = require('./routes/api.news');
-  var galleries = require('./routes/api.galleries');
-  var usefuls   = require('./routes/api.usefuls');
+  var routes        = require('./routes');
+  var news          = require('./routes/api.news');
+  var galleries     = require('./routes/api.galleries');
+  var usefuls       = require('./routes/api.usefuls');
+  var legislations  = require('./routes/api.legislations.js');
   var http   = require('http');
   var path   = require('path');
 
@@ -68,6 +69,18 @@
   app.post('/api/galleries', galleries.add);
   app.put('/api/galleries/:id', galleries.edit);
   app.delete('/api/galleries/:id', galleries.delete);
+  //СОВЕТЫ
+  app.get('/api/usefuls', usefuls.list);
+  app.get('/api/usefuls/:id', usefuls.get);
+  app.post('/api/usefuls', usefuls.add);
+  app.put('/api/usefuls/:id', usefuls.edit);
+  app.delete('/api/usefuls/:id', usefuls.delete);
+
+  app.get('/api/legislations', legislations.list);
+  app.get('/api/legislations/:id', legislations.get);
+  app.post('/api/legislations', legislations.add);
+  app.put('/api/legislations/:id', legislations.edit);
+  app.delete('/api/legislations/:id', legislations.delete);
   // ЛЮБОЙ, НЕ СУЩЕСТВУЮЩИЙ
   app.get('*', routes.index);
 

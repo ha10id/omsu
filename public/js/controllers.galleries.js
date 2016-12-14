@@ -27,7 +27,7 @@ function AddGalleriesCtrl($scope, $location, $routeParams, Galleries, $timeout, 
             function (data) {
                 $log.info("новость сохранена");
                 // $log.debug(data);
-                $location.url('/');
+                $location.url('/galleries');
             },
             function (err) {
             // сообщаем об ошибке.

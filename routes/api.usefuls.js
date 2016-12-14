@@ -1,7 +1,7 @@
 var gm              = require('gm');
 var fs              = require('fs');
 //========================================================
-var Galleries = require('./models/Galleries.js');
+var Usefuls = require('./models/Usefuls.js');
 // генерация уникального ID
 var ID = function () {
   'use strict';
@@ -18,7 +18,7 @@ var ID = function () {
 // список документов +
 exports.list = function (req, res) {
   'use strict';
-  Galleries.find(function(err, response) {
+  Usefuls.find(function(err, response) {
     if (err) {
       res.send(err);
     }
@@ -46,7 +46,7 @@ exports.edit = function (req, res) {
     // console.log('session.isadmin: ', req.session.isadmin);
     // console.dir('request.body: ', req.body);
 
-    Galleries.findOne({ _id : id }, function(err, response) {
+    Usefuls.findOne({ _id : id }, function(err, response) {
       if (err) {
         res.send(false);
       }
@@ -87,7 +87,7 @@ exports.get = function (req, res) {
   var id = req.params.id;
   console.log("-----------------------------------------");
   console.log('api get news :', id);
-  Galleries.findOne({ _id : id }, function(err, response) {
+  Usefuls.findOne({ _id : id }, function(err, response) {
     if (err) {
       res.send(err);
     }
@@ -112,7 +112,7 @@ exports.add = function (req, res) {
     // };
     // req.body.datestamp = new Date();
     // новый объект
-    var newItem = new Galleries(req.body);
+    var newItem = new Usefuls(req.body);
     // пробуем записать
     newItem.save(function(err) {
       // console.log(newNews);
@@ -130,7 +130,7 @@ exports.add = function (req, res) {
 // // DELETE
 exports.delete = function (req, res) {
   var id = req.params.id;
-  Galleries.remove({_id: id}, function(err, data){
+  Usefuls.remove({_id: id}, function(err, data){
     if (err) {
       res.json(false);
     }

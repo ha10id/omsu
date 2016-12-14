@@ -97,6 +97,7 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
   when('/', {
     redirectTo: '/news'
   }).
+  // новости
   when('/news', {
     templateUrl: 'partials/indexNews',
     controller: IndexNewsCtrl
@@ -109,18 +110,11 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     templateUrl: 'partials/readPost',
     controller: ReadPostCtrl
   }).
-  // when('/adminPanel', {
-  //   templateUrl: 'partials/adminPanel',
-  //   controller: AdminPanelCtrl
-  // }).
   when('/newsEdit/:id', {
     templateUrl: 'partials/editPost',
     controller: EditPostCtrl
   }).
-  // when('/deleteNews/:id', {
-  //   templateUrl: 'partials/deletePost',
-  //   controller: DeletePostCtrl
-  // }).
+  // галерея
   when('/galleries', {
     templateUrl: 'partials/indexGalleries',
     controller: IndexGalleriesCtrl
@@ -137,9 +131,39 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     templateUrl: 'partials/editGalleries',
     controller: EditGalleriesCtrl
   }).
+  // полезные советы
   when('/usefuls', {
     templateUrl: 'partials/indexUsefuls',
     controller: IndexUsefulsCtrl
+  }).
+  when('/usefuls/:id', {
+    templateUrl: 'partials/readUsefuls',
+    controller: ReadUsefulsCtrl
+  }).
+  when('/addUsefuls', {
+    templateUrl: 'partials/addUsefuls',
+    controller: AddUsefulsCtrl
+  }).
+  when('/editUsefuls/:id', {
+    templateUrl: 'partials/editUsefuls',
+    controller: EditUsefulsCtrl
+  }).
+  // изменения в законодательстве
+  when('/legislations', {
+    templateUrl: 'partials/indexLegislations',
+    controller: IndexLegislationsCtrl
+  }).
+  when('/legislations/:id', {
+    templateUrl: 'partials/readLegislations',
+    controller: ReadLegislationsCtrl
+  }).
+  when('/addLegislations', {
+    templateUrl: 'partials/addLegislations',
+    controller: AddLegislationsCtrl
+  }).
+  when('/editLegislations/:id', {
+    templateUrl: 'partials/editLegislations',
+    controller: EditLegislationsCtrl
   }).
   // when('/news', {
   //   templateUrl: 'partials/indexUseful',

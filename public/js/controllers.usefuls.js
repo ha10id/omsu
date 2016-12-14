@@ -1,15 +1,15 @@
 // Контроллеры
 // главная страница
-function IndexUsefulsCtrl($rootScope, $scope, $http, Galleries, $location, $log) {
+function IndexUsefulsCtrl($rootScope, $scope, $http, Usefuls, $location, $log) {
     $scope.posts = Usefuls.query();
     $log.info($scope.posts);
 
-    $scope.addGalleries = function(){
-        $location.url('/addGalleries');
+    $scope.add = function(){
+        $location.url('/addUsefuls');
     };
 };
 // добавление документа
-function AddUsefulCtrl($scope, $location, $routeParams, Usefuls, $timeout, $log) {
+function AddUsefulsCtrl($scope, $location, $routeParams, Usefuls, $timeout, $log) {
     'use strict';
 
     // чистим поля формы
@@ -27,7 +27,7 @@ function AddUsefulCtrl($scope, $location, $routeParams, Usefuls, $timeout, $log)
             function (data) {
                 $log.info("новость сохранена");
                 // $log.debug(data);
-                $location.url('/');
+                $location.url('/usefuls');
             },
             function (err) {
             // сообщаем об ошибке.
@@ -45,13 +45,13 @@ function AddUsefulCtrl($scope, $location, $routeParams, Usefuls, $timeout, $log)
     };
 };
 // чтение документа
-function ReadUsefulCtrl($scope, $http, Galleries, $routeParams) {
+function ReadUsefulsCtrl($scope, $http, Usefuls, $routeParams) {
     Usefuls.get({id: $routeParams.id}, function(data){
         $scope.post = data;
     });
 };
 // редактирование документа
-function EditUsefulCtrl($scope, $location, Galleries, $routeParams, $log) {
+function EditUsefulsCtrl($scope, $location, Usefuls, $routeParams, $log) {
     $scope.form = {};
     'use strict';
     var usefuls = Usefuls.get({id: $routeParams.id}, function(data){
@@ -63,10 +63,10 @@ function EditUsefulCtrl($scope, $location, Galleries, $routeParams, $log) {
         console.log('Editor content:', $scope.tinymceModel);
         usefuls.body = $scope.tinymceModel;
         usefuls.title = $scope.title;
-        Usefuls.update({id: $routeParams.id}, galleries,
+        Usefuls.update({id: $routeParams.id}, usefuls,
           function (data) {
             $log.info("новость сохранена");
-            $location.url('/usefuls/');
+            $location.url('/usefuls');
         },
         function (err) {
             // сообщаем об ошибке.
