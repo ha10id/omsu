@@ -4,7 +4,7 @@ function IndexGalleriesCtrl($rootScope, $scope, $http, Galleries, $location, $lo
     $scope.posts = Galleries.query();
     $log.info($scope.posts);
 
-    $scope.addGalleries = function(){
+    $scope.add = function(){
         $location.url('/addGalleries');
     };
 };

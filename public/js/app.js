@@ -165,6 +165,27 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     templateUrl: 'partials/editLegislations',
     controller: EditLegislationsCtrl
   }).
+  // полезно знать
+  // when('/gootToKnows', {
+  //   templateUrl: 'partials/indexGootToKnows',
+  //   controller: IndexGootToKnowsCtrl
+  // }).
+  // when('/gootToKnows/:id', {
+  //   templateUrl: 'partials/readGootToKnows',
+  //   controller: ReadGootToKnowsCtrl
+  // }).
+  // when('/addGootToKnows', {
+  //   templateUrl: 'partials/addGootToKnows',
+  //   controller: AddGootToKnowsCtrl
+  // }).
+  // when('/editGootToKnows/:id', {
+  //   templateUrl: 'partials/editGootToKnows',
+  //   controller: EditGootToKnowsCtrl
+  // }).
+
+
+
+
   // when('/news', {
   //   templateUrl: 'partials/indexUseful',
   //   controller: IndexNewsCtrl

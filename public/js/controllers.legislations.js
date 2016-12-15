@@ -11,7 +11,6 @@ function IndexLegislationsCtrl($rootScope, $scope, $http, Legislations, $locatio
 // добавление документа
 function AddLegislationsCtrl($scope, $location, $routeParams, Legislations, $timeout, $log) {
     'use strict';
-
     // чистим поля формы
     $scope.form = {};
     // функция сохранения обращения
@@ -27,7 +26,7 @@ function AddLegislationsCtrl($scope, $location, $routeParams, Legislations, $tim
             function (data) {
                 $log.info("новость сохранена");
                 // $log.debug(data);
-                $location.url('/Legislations');
+                $location.url('/legislations');
             },
             function (err) {
             // сообщаем об ошибке.
@@ -66,7 +65,7 @@ function EditLegislationsCtrl($scope, $location, Legislations, $routeParams, $lo
         Legislations.update({id: $routeParams.id}, legislations,
           function (data) {
             $log.info("новость сохранена");
-            $location.url('/legislations/');
+            $location.url('/legislations');
         },
         function (err) {
             // сообщаем об ошибке.
@@ -87,9 +86,9 @@ function EditLegislationsCtrl($scope, $location, Legislations, $routeParams, $lo
     };
     // удаление документа
     $scope.removeDocument = function () {
-        $log.info('новость: ', galleries);
-        let result = Galleries.remove({id: $routeParams.id});
+        $log.info('новость: ', legislations);
+        let result = Legislations.remove({id: $routeParams.id});
         console.log(result)
-        $location.url('/galleries');
+        $location.url('/legislations');
     };
 };

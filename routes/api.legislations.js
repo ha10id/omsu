@@ -129,7 +129,9 @@ exports.add = function (req, res) {
 };
 // // DELETE
 exports.delete = function (req, res) {
+  'use strict';
   var id = req.params.id;
+  console.log(id);
   Legislations.remove({_id: id}, function(err, data){
     if (err) {
       res.json(false);
