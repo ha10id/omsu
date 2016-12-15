@@ -3,7 +3,6 @@
 function IndexNewsCtrl($rootScope, $scope, $http, News, $location, $log) {
   $scope.posts = News.query();
   $log.info($scope.posts);
-
   $scope.add = function(){
     $location.url('/addNews');
   };

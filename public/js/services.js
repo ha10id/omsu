@@ -22,6 +22,16 @@ angular.module('myApp.services', ['ngResource'])
 		'update': { method:'PUT'}
 	});
 })
+.factory('GootToKnows', function($resource){
+	return $resource('api/goottoknows/:id', null, {
+		'update': { method:'PUT'}
+	});
+})
+.factory('PortalDevs', function($resource){
+	return $resource('api/portaldevs/:id', null, {
+		'update': { method:'PUT'}
+	});
+})
 // Фабрика объекта "Категории"
 // .factory('Categories', function($resource){
 // 	return $resource('api/categories/:id', null, {

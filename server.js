@@ -14,6 +14,9 @@
   var galleries     = require('./routes/api.galleries');
   var usefuls       = require('./routes/api.usefuls');
   var legislations  = require('./routes/api.legislations.js');
+  var goottoknows   = require('./routes/api.goottoknows.js');
+  var portaldevs    = require('./routes/api.portaldevs.js');
+
   var http   = require('http');
   var path   = require('path');
 
@@ -75,12 +78,31 @@
   app.post('/api/usefuls', usefuls.add);
   app.put('/api/usefuls/:id', usefuls.edit);
   app.delete('/api/usefuls/:id', usefuls.delete);
+  // изменения в законодательстве
+  app.get('/api/legislations', legislations.list);
+  app.get('/api/legislations/:id', legislations.get);
+  app.post('/api/legislations', legislations.add);
+  app.put('/api/legislations/:id', legislations.edit);
+  app.delete('/api/legislations/:id', legislations.delete);
 
   app.get('/api/legislations', legislations.list);
   app.get('/api/legislations/:id', legislations.get);
   app.post('/api/legislations', legislations.add);
   app.put('/api/legislations/:id', legislations.edit);
   app.delete('/api/legislations/:id', legislations.delete);
+
+  app.get('/api/goottoknows', goottoknows.list);
+  app.get('/api/goottoknows/:id', goottoknows.get);
+  app.post('/api/goottoknows', goottoknows.add);
+  app.put('/api/goottoknows/:id', goottoknows.edit);
+  app.delete('/api/goottoknows/:id', goottoknows.delete);
+
+  app.get('/api/portaldevs', portaldevs.list);
+  app.get('/api/portaldevs/:id', portaldevs.get);
+  app.post('/api/portaldevs', portaldevs.add);
+  app.put('/api/portaldevs/:id', portaldevs.edit);
+  app.delete('/api/portaldevs/:id', portaldevs.delete);
+
   // ЛЮБОЙ, НЕ СУЩЕСТВУЮЩИЙ
   app.get('*', routes.index);
 

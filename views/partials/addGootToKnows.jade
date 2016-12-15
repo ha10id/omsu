@@ -1,0 +1,18 @@
+.row
+ // добавление новости
+ng-form(method="post")
+    .form-group
+        label(for='title') заголовок:
+        input.form-control(ng-model='form.title', name='title')
+    //- .form-group
+    //-     button.btn.btn-info Картинка в заголовке
+    .form-group
+        textarea#my_editor(ui-tinymce="tinymceOptions", ng-model="tinymceModel")
+        iframe#form_target(name='form_target', style='display:none')
+        form#my_form(action='/upload/', target='form_target', method='post', enctype='multipart/form-data', style='width:0px;height:0;overflow:hidden')
+            input(name='image', type='file', onchange="$('#my_form').submit();this.value='';")
+    .form-group
+        .btn-group
+            button.btn.btn-success(ng-if="isAdmin", ng-click='commitDocument()') Опубликовать
+            button.btn.btn-info(ng-if="isAdmin", ng-click='closeDocument()') Сохранить в черновики
+            button.btn.btn-danger(ng-if="isAdmin", ng-click='uncloseDocument()') Удалить

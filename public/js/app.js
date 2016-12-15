@@ -22,6 +22,7 @@ run(function($rootScope, modalService) {
       });
 
     };
+    // настройки редактора
     $rootScope.tinymceOptions = {
       // General options
       selector:'textarea',
@@ -166,25 +167,41 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     controller: EditLegislationsCtrl
   }).
   // полезно знать
-  // when('/gootToKnows', {
-  //   templateUrl: 'partials/indexGootToKnows',
-  //   controller: IndexGootToKnowsCtrl
-  // }).
-  // when('/gootToKnows/:id', {
-  //   templateUrl: 'partials/readGootToKnows',
-  //   controller: ReadGootToKnowsCtrl
-  // }).
-  // when('/addGootToKnows', {
-  //   templateUrl: 'partials/addGootToKnows',
-  //   controller: AddGootToKnowsCtrl
-  // }).
-  // when('/editGootToKnows/:id', {
-  //   templateUrl: 'partials/editGootToKnows',
-  //   controller: EditGootToKnowsCtrl
-  // }).
+  when('/gootToKnows', {
+    templateUrl: 'partials/indexGootToKnows',
+    controller: IndexGootToKnowsCtrl
+  }).
+  when('/gootToKnows/:id', {
+    templateUrl: 'partials/readGootToKnows',
+    controller: ReadGootToKnowsCtrl
+  }).
+  when('/addGootToKnows', {
+    templateUrl: 'partials/addGootToKnows',
+    controller: AddGootToKnowsCtrl
+  }).
+  when('/editGootToKnows/:id', {
+    templateUrl: 'partials/editGootToKnows',
+    controller: EditGootToKnowsCtrl
+  }).
+  // полезно знать
+  when('/portaldev', {
+    templateUrl: 'partials/indexPortalDev',
+    controller: IndexPortalDevCtrl
+  }).
+  when('/portaldev/:id', {
+    templateUrl: 'partials/readPortalDev',
+    controller: ReadPortalDevCtrl
+  }).
+  when('/addPortalDev', {
+    templateUrl: 'partials/addPortalDev',
+    controller: AddPortalDevCtrl
+  }).
+  when('/editPortalDev/:id', {
+    templateUrl: 'partials/editPortalDev',
+    controller: EditPortalDevCtrl
+  }).
 
-
-
+// PortalDev
 
   // when('/news', {
   //   templateUrl: 'partials/indexUseful',

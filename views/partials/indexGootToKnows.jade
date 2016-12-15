@@ -6,7 +6,7 @@
     div(ng-repeat='post in posts', ng-if="!isAdmin")
         .jumborton
             span.label.label-success опубликовано {{post.publication_date | date}}
-            a(href="portaldev/{{post.id}}" , style="text-align: center; cursor: pointer;")
+            a(href="goottoknows/{{post.id}}" , style="text-align: center; cursor: pointer;")
                 h2
                     b {{post.title}}
             div
@@ -16,7 +16,7 @@
     div(ng-repeat='post in posts', ng-if="isAdmin")
         .jumborton
             span.label.label-success опубликовано {{post.publication_date | date}}
-            a(href="editPortalDev/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
+            a(href="editGootToKnows/{{post.id}}" ,  style="text-align: center; cursor: pointer;")
                 h2
                     b {{post.title}}
             div

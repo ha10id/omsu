@@ -57,14 +57,6 @@ pre {
   line-height: 18.5714px;
 }
 /*
-.navbar .nav > li > a, .navbar .nav > li > a:first-letter,
-.navbar .nav > li.current-menu-item > a,
-.navbar .nav > li.current-menu-ancestor > a {
-display:        inline;
-color:          white;
-font-size:      1.5em;
-padding:        15px 10px;
-}*/
 .navbar {
     text-align: center;
     border-radius: 0px !important;
@@ -91,6 +83,15 @@ padding:        15px 10px;
 .navbar-default .navbar-nav:not(.icons) > li > a:hover {
   color: #60F0C1 !important;
 }
+/* Цвет и фон открытого пункта меню, а также поднесении к нему курсора мышки или при его нахождении в фокусе */
+/*
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #d1ffed;
+    background-color: #27ae60;
+}
+*/
 
 body {
     font-family: 'CenturyGothicRegular', sans-serif;
