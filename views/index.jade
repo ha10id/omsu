@@ -171,9 +171,8 @@ block body
                     a(href="/gootToKnows") полезно знать
                   li
                     a(href="/portaldev") развитие портала
-                  //- li
-                  //-   a(href="/adminPanel") admin
-
+                  li
+                    a(href="/adminPanel") admin
         <!-- BODY -->
         row
           div.documents(ng-view, style="display: block !important;")
@@ -227,3 +226,5 @@ block body
   script(src='js/directives.js')
   //- script(src='js/components.js')
   script(src="libs/angular-ui-tinymce/src/tinymce.js")
+  script.
+    document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
