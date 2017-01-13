@@ -1,0 +1,7 @@
+    .modal-header
+      h3.modal-title {{modalOptions.headerText}}
+    .modal-body(id="modal-body")
+      textarea.form-control(name="comment.body", ng-model="comment.body", rows="5")
+    .modal-footer
+      button.btn(type="button", ng-click="modalOptions.close()") {{modalOptions.closeButtonText}}
+      button.btn.btn-primary(ng-click="modalOptions.ok(comment.body)") {{modalOptions.actionButtonText}}

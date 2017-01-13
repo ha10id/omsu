@@ -54,7 +54,7 @@ function modalService($uibModal) {
 		backdrop: true,
 		keyboard: true,
 		modalFade: true,
-		templateUrl: 'modal/modal.html',
+		templateUrl: 'modal.html',
 		size: 'lg'
 	};
 

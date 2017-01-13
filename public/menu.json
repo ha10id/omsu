@@ -1,0 +1,84 @@
+[
+  {
+    "_id": "58241ceb3b372af644e00251",
+    "title": "Ставропольский край",
+    "url": "/post/trust",
+    "__v": 13,
+    "children": [
+      {
+        "children": [],
+        "_id": "582425e47124a255482b0111",
+        "url": "/post/trust/1",
+        "title": "Устав и геральдика"
+      },
+      {
+        "children": [],
+        "_id": "58242ef96c4b174f54bc567e",
+        "url": "/post/trust/111",
+        "title": "Устав (Основной Закон) Ставропольского края"
+      },
+      {
+        "children": [
+          {
+            "children": [],
+            "_id": "58242ef96c4b174f54bc567d",
+            "url": "/post/trust/111",
+            "title": "children меню"
+          }
+        ],
+        "_id": "582431abd0ca17045dfb7ec7",
+        "url": "/post/trust/111",
+        "title": "children меню 3"
+      }
+    ]
+  },
+  {
+    "_id": "58245d8c2ff5756675f563a4",
+    "title": "меню",
+    "url": "/post/trust/111",
+    "__v": 0,
+    "children": []
+  },
+  {
+    "_id": "58246fce0db712fc7c3deb9f",
+    "title": "меню",
+    "url": "/post/trust/111",
+    "__v": 0,
+    "children": []
+  },
+  {
+    "_id": "58246fcf0db712fc7c3deba0",
+    "title": "меню",
+    "url": "/post/trust/111",
+    "__v": 0,
+    "children": []
+  },
+  {
+    "_id": "58246fd00db712fc7c3deba1",
+    "title": "меню",
+    "url": "/post/trust/111",
+    "__v": 0,
+    "children": []
+  },
+  {
+    "_id": "58246fd10db712fc7c3deba2",
+    "title": "меню",
+    "url": "/post/trust/111",
+    "__v": 0,
+    "children": []
+  },
+  {
+    "_id": "58246fd10db712fc7c3deba3",
+    "title": "меню",
+    "url": "/post/trust/111",
+    "__v": 0,
+    "children": []
+  },
+  {
+    "_id": "58246fd20db712fc7c3deba4",
+    "title": "меню",
+    "url": "/post/trust/111",
+    "__v": 0,
+    "children": []
+  }
+]

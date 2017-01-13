@@ -9,7 +9,7 @@ run(function($rootScope, modalService) {
         backdrop: true,
         keyboard: true,
         modalFade: true,
-        templateUrl: 'menu.html',
+        templateUrl: 'mainMenu.html',
         size: 'lg'
       };
       var modalOptions = {
@@ -200,7 +200,10 @@ config(['$routeProvider', '$locationProvider', function($routeProvider, $locatio
     templateUrl: 'partials/editPortalDev',
     controller: EditPortalDevCtrl
   }).
-
+  // when('/adminPanel', {
+  //   templateUrl: 'partials/adminPortal',
+  //   controller: AdminPortalCtrl
+  // }).
 // PortalDev
 
   // when('/news', {

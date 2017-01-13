@@ -16,6 +16,7 @@
   var legislations  = require('./routes/api.legislations.js');
   var goottoknows   = require('./routes/api.goottoknows.js');
   var portaldevs    = require('./routes/api.portaldevs.js');
+  var test          = require('./routes/api.test.js');
 
   var http   = require('http');
   var path   = require('path');
@@ -26,7 +27,7 @@
   mongoose.connect(db.url); // connect to our mongoDB database (commented out after you enter in your own credentials)
 
 // all environments
-  app.set('port', process.env.PORT || 3020);
+  app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(favicon(__dirname + '/public/img/26.ico'));
@@ -102,6 +103,8 @@
   app.post('/api/portaldevs', portaldevs.add);
   app.put('/api/portaldevs/:id', portaldevs.edit);
   app.delete('/api/portaldevs/:id', portaldevs.delete);
+
+  app.get('/api/menus', test.menusList);
 
   // ЛЮБОЙ, НЕ СУЩЕСТВУЮЩИЙ
   app.get('*', routes.index);
